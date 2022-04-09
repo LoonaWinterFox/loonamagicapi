@@ -19,9 +19,9 @@
 		margin: 20px;
 	}
 	</style>
-	<div class="header"><h1>MAGIC THE GATHERING</h1></div>
 </head>
 <body>
+	<div class="header"><h1>MAGIC THE GATHERING</h1></div>
 	<img id="imageUrl"</img>
 	<div class="details">
 		<p>Card Name: <span id="cardName"></span></p>
@@ -40,8 +40,10 @@
 		document.getElementById('cardManaCost').textContent = data.cards[num].manaCost;
 		document.getElementById('cardType').textContent = data.cards[num].type;
 		document.getElementById('cardArtist').textContent = data.cards[num].artist;
+		console.log(Object.keys(data.cards).length);
 	}
-	getCard(0);
+
+	getCard(1);
 </script>
 </body>
 </html>
