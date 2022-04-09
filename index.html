@@ -6,24 +6,28 @@
 .header {
 	color: white;
 	text-align: center;
-	
-
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
 }
 body {
-	background-color: grey;
+	background-color: #3c3c3c;
 	color: white;
-	
+	margin: 20px;
 }
-
-
-
 </style>
 <div class="header"><h1>MAGIC THE GATHERING</h1></div>
 </head>
 <body>
+<img id="imageUrl"</img>
+<div class="details">
 	<p>Card Name: <span id="cardName"></span></p>
 	<p>Card Mana Cost: <span id="cardManaCost"></span></p>
 	<p>Card Type: <span id="cardType"></span></p>
+</div>
 <script>
 	const api_url = "https://api.magicthegathering.io/v1/cards";
 
@@ -33,6 +37,7 @@ body {
 		document.getElementById('cardName').textContent = data.cards[num].name;
 		document.getElementById('cardManaCost').textContent = data.cards[num].manaCost;
 		document.getElementById('cardType').textContent = data.cards[num].type;
+		document.getElementById('imageUrl').src = data.cards[num].imageUrl;
 	}
 	getCard(0);
 </script>
