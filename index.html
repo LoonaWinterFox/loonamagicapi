@@ -32,19 +32,22 @@
 	</div>
 <script>
 	const api_url = "https://api.magicthegathering.io/v1/cards";
-	async function getCard(num){
+	async function loadCards(){
 		const response = await fetch(api_url);
-		const data = await response.json();
-		document.getElementById('cardImage').src = data.cards[num].imageUrl;
-		document.getElementById('cardName').textContent = data.cards[num].name;
-		document.getElementById('cardManaCost').textContent = data.cards[num].manaCost;
-		document.getElementById('cardType').textContent = data.cards[num].type;
-		document.getElementById('cardFlavor').textContent = data.cards[num].flavor;
-		document.getElementById('cardArtist').textContent = data.cards[num].artist;
-		console.log(Object.keys(data.cards).length);
+		return await response.json().cards;
 	}
-
-	getCard(0);
+	function getCard(cardData){
+		document.getElementById('cardImage').src = cardData.imageUrl;
+		document.getElementById('cardName').textContent = cardData.name;
+		document.getElementById('cardManaCost').textContent = cardData.manaCost;
+		document.getElementById('cardType').textContent = cardData.type;
+		document.getElementById('cardFlavor').textContent = cardData.flavor;
+		document.getElementById('cardArtist').textContent = cardData.artist;
+		console.log(Object.keys(cardData).length);
+	}
+	
+	let cardData = await loadCards();
+	getCard(cardData[0]);
 </script>
 </body>
 </html>
