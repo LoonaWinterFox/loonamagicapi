@@ -45,10 +45,10 @@
 		document.getElementById('cardArtist').textContent = cardData.artist;
 		console.log(Object.keys(cardData).length);
 	}
-	
 	window.onload = async function main() {
 		let cardData = await loadCards();
-		renderCard(cardData[0]);
+		let num = await(Math.floor(Math.random() * (Object.keys(cardData).length + 1)));
+		renderCard(cardData[num]);
 	};
 
 </script>
