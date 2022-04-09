@@ -34,7 +34,7 @@
 	const api_url = "https://api.magicthegathering.io/v1/cards";
 	async function loadCards(){
 		const response = await fetch(api_url);
-		return await response.json().cards;
+		return ((await response.json()).cards);
 	}
 	function renderCard(cardData){
 		document.getElementById('cardImage').src = cardData.imageUrl;
@@ -46,10 +46,10 @@
 		console.log(Object.keys(cardData).length);
 	}
 	
-	window.onload(function main() {
+	window.onload = async function main() {
 		let cardData = await loadCards();
 		renderCard(cardData[0]);
-	});
+	};
 
 </script>
 </body>
