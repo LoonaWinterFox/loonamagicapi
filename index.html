@@ -27,6 +27,7 @@
 		<p>Card Name: <span id="cardName"></span></p>
 		<p>Card Mana Cost: <span id="cardManaCost"></span></p>
 		<p>Card Type: <span id="cardType"></span></p>
+		<p>Card Type: <span id="cardArtist"></span></p>
 	</div>
 <script>
 	const api_url = "https://api.magicthegathering.io/v1/cards";
@@ -34,10 +35,11 @@
 	async function getCard(num){
 		const response = await fetch(api_url);
 		const data = await response.json();
+		document.getElementById('imageUrl').src = data.cards[num].imageUrl;
 		document.getElementById('cardName').textContent = data.cards[num].name;
 		document.getElementById('cardManaCost').textContent = data.cards[num].manaCost;
 		document.getElementById('cardType').textContent = data.cards[num].type;
-		document.getElementById('imageUrl').src = data.cards[num].imageUrl;
+		document.getElementById('cardArtist').textContent = data.cards[num].artist;
 	}
 	getCard(0);
 </script>
