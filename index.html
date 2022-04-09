@@ -3,21 +3,21 @@
 <head>
 	<title>Loona Magic Api</title>
 	<style>
-	.header {
-		color: white;
-		text-align: center;
-	}
-	#cardImage {
-	  display: block;
-	  margin-left: auto;
-	  margin-right: auto;
-	  width: 20%;
-	}
-	body {
-		background-color: #3c3c3c;
-		color: white;
-		margin: 20px;
-	}
+		.header {
+			color: white;
+			text-align: center;
+		}
+		#cardImage {
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		  width: 20%;
+		}
+		body {
+			background-color: #3c3c3c;
+			color: white;
+			margin: 20px;
+		}
 	</style>
 </head>
 <body>
@@ -31,11 +31,19 @@
 		<p>Card Artist: <span id="cardArtist"></span></p>
 	</div>
 <script>
-	const api_url = "https://api.magicthegathering.io/v1/cards";
+	const CARD_API = "https://api.magicthegathering.io/v1/cards";
+	/**
+	 * Loads the data of ALL magic cards
+	 */
 	async function loadCards(){
-		const response = await fetch(api_url);
+		const response = await fetch(CARD_API);
 		return await response.json().cards;
 	}
+
+		
+	/**
+	 * Renders a card unto the screen.
+	 */
 	function renderCard(cardData){
 		document.getElementById('cardImage').src = cardData.imageUrl;
 		document.getElementById('cardName').textContent = cardData.name;
