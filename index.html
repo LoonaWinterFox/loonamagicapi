@@ -47,7 +47,7 @@
 	}
 	window.onload = async function main() {
 		let cardData = await loadCards();
-		let num = await(Math.floor(Math.random() * (Object.keys(cardData).length + 1)));
+		let num = Math.floor(Math.random() * (Object.keys(cardData).length + 1));
 		renderCard(cardData[num]);
 	};
 
