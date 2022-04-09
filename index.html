@@ -3,47 +3,60 @@
 <head>
 	<title>Loona Magic Api</title>
 	<style>
-	.header {
-		color: white;
-		text-align: center;
-	}
-	#cardImage {
-	  display: block;
-	  margin-left: auto;
-	  margin-right: auto;
-	  width: 20%;
-	}
-	body {
-		background-color: #3c3c3c;
-		color: white;
-		margin: 20px;
-	}
+		.header {
+			color: white;
+			text-align: center;
+		}
+		.card-art {
+			  display: block;
+			  margin-left: auto;
+			  margin-right: auto;
+			  width: 20%;
+		}
+		body {
+			background-color: #3c3c3c;
+			color: white;
+			margin: 20px;
+		}
 	</style>
 </head>
 <body>
-	<h1 class="header">MAGIC THE GATHERING</h1>
-	<img id="cardImage"</img>
+	<div class="header"><h1>MAGIC THE GATHERING</h1></div>
+	<img id="cardCover" class="card-art" />
 	<div class="details">
 		<p>Card Name: <span id="cardName"></span></p>
 		<p>Card Mana Cost: <span id="cardManaCost"></span></p>
 		<p>Card Type: <span id="cardType"></span></p>
 		<p>Card Artist: <span id="cardArtist"></span></p>
 	</div>
-<script>
-	const api_url = "https://api.magicthegathering.io/v1/cards";
+	
 
-	async function getCard(num){
-		const response = await fetch(api_url);
-		const data = await response.json();
-		document.getElementById('cardImage').src = data.cards[num].imageUrl;
-		document.getElementById('cardName').textContent = data.cards[num].name;
-		document.getElementById('cardManaCost').textContent = data.cards[num].manaCost;
-		document.getElementById('cardType').textContent = data.cards[num].type;
-		document.getElementById('cardArtist').textContent = data.cards[num].artist;
-		console.log(Object.keys(data.cards).length);
+<script>
+	const CARD_API = "https://api.magicthegathering.io/v1/cards";
+	/**
+	 * Loads the data of ALL magic cards
+	 */
+	async function LoadCards(){
+		const response = await fetch(CARD_API);
+		return await response.json().cards;
+	}
+		
+	/**
+	 * Renders a card unto the screen.
+	 */
+	function renderCard(card_data) {
+		document.getElementById('cardCover').src = card_data.imageUrl;
+		document.getElementById('cardName').textContent = card_data.name;
+		document.getElementById('cardManaCost').textContent = card_data.manaCost;
+		document.getElementById('cardType').textContent = card_data.type;
+		document.getElementById('cardArtist').textContent = card_data.artist;
 	}
 
-	getCard(0);
+	
+	let all_card_data = await LoadCards();
+	renderCard(all_card_data[1]);
+	
+	console.log(Object.keys(data.cards).length);
 </script>
 </body>
 </html>
