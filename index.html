@@ -36,7 +36,7 @@
 		const response = await fetch(api_url);
 		return await response.json().cards;
 	}
-	function getCard(cardData){
+	function renderCard(cardData){
 		document.getElementById('cardImage').src = cardData.imageUrl;
 		document.getElementById('cardName').textContent = cardData.name;
 		document.getElementById('cardManaCost').textContent = cardData.manaCost;
@@ -46,8 +46,11 @@
 		console.log(Object.keys(cardData).length);
 	}
 	
-	let cardData = await loadCards();
-	getCard(cardData[0]);
+	window.onload(function main() {
+		let cardData = await loadCards();
+		renderCard(cardData[0]);
+	});
+
 </script>
 </body>
 </html>
