@@ -7,7 +7,7 @@
 		color: white;
 		text-align: center;
 	}
-	img {
+	#cardImage {
 	  display: block;
 	  margin-left: auto;
 	  margin-right: auto;
@@ -22,7 +22,7 @@
 </head>
 <body>
 	<h1 class="header">MAGIC THE GATHERING</h1>
-	<img id="imageUrl"</img>
+	<img id="cardImage"</img>
 	<div class="details">
 		<p>Card Name: <span id="cardName"></span></p>
 		<p>Card Mana Cost: <span id="cardManaCost"></span></p>
@@ -35,7 +35,7 @@
 	async function getCard(num){
 		const response = await fetch(api_url);
 		const data = await response.json();
-		document.getElementById('imageUrl').src = data.cards[num].imageUrl;
+		document.getElementById('cardImage').src = data.cards[num].imageUrl;
 		document.getElementById('cardName').textContent = data.cards[num].name;
 		document.getElementById('cardManaCost').textContent = data.cards[num].manaCost;
 		document.getElementById('cardType').textContent = data.cards[num].type;
