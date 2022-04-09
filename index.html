@@ -37,7 +37,7 @@
 	 */
 	async function loadCards(){
 		const response = await fetch(CARD_API);
-		return await response.json().cards;
+		return ((await response.json()).cards);
 	}
 
 		
@@ -54,10 +54,10 @@
 		console.log(Object.keys(cardData).length);
 	}
 	
-	window.onload(function main() {
+	window.onload = async function main() {
 		let cardData = await loadCards();
 		renderCard(cardData[0]);
-	});
+	};
 
 </script>
 </body>
